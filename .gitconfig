@@ -1,20 +1,31 @@
-# core {{{
-[core]
-    editor = /usr/bin/vim
-    excludesfile = /Users/np/.gitignore_global
-    pager=less -x4
-
-#}}}
-# user {{{
 [user]
-    email = npaolucci@atlassian.com
-    name = Nicola Paolucci
+	name = Brian Wirt
+	email = bwirt@users.noreply.github.com
 
-#}}}
-# include sendemail config {{{
-[include]
-    path = ~/.git-sendemail
-# }}}
+[core]
+	sshCommand = C:\\\\Windows\\\\System32\\\\OpenSSH\\\\ssh.exe
+
+[safe]
+	directory = /workspace
+
+[diff]
+	tool = bc
+
+[difftool "bc"]
+	path = c:/Program Files/Beyond Compare 4/bcomp.exe
+
+[merge]
+	tool = bc
+
+[mergetool "bc"]
+	path = c:/Program Files/Beyond Compare 4/bcomp.exe
+
+[difftool]
+	prompt = false
+
+[mergetool]
+	keepBackup = false
+
 # color {{{
 [color]
     branch = auto
@@ -39,22 +50,13 @@
     untracked = cyan
 
 # }}}
-# push/pull/diff/options {{{
-[push]
-    default = current
-[pull]
-    default = current
-[diff]
-    mnemonicprefix = true
-[branch]
-    autosetuprebase = always
-[apply]
-    whitespace = nowarn
 
-#}}}
-# alias {{{
 [alias]
-    # basic {{{
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    nuke = !sh -c 'git branch -D $1 && git push origin :$1' -
+	aliases = config --get-regex 'alias*'
+
+# basic {{{
     st = status -s
     cl = clone
     ci = commit
@@ -176,3 +178,34 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[fetch]
+	prune = true
+
+[gc]
+	autoDetach = false
+
+[commit]
+	gpgSign = false
+
+[gui]
+	pruneduringfetch = true
+
+[smartgit "submodule"]
+	fetchalways = false
+	update = true
+	initializenew = true
+
+# push/pull/diff/options {{{
+[push]
+    default = current
+[pull]
+    default = current
+	rebase = true
+[diff]
+    mnemonicprefix = true
+[branch]
+    autosetuprebase = always
+[apply]
+    whitespace = nowarn
+
+#}}}
